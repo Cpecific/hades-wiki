@@ -1,0 +1,78 @@
+@font-face { font-family: "AlegreyaSans-Regular"; src: url("fonts/AlegreyaSans-Regular.ttf"); } 
+@font-face { font-family: "AlegreyaSans-Light"; src: url("fonts/AlegreyaSans-Light.ttf"); } 
+@font-face { font-family: "AlegreyaSans-Italic"; src: url("fonts/AlegreyaSans-Italic.ttf"); } 
+@font-face { font-family: "AlegreyaSans-ExtraBold"; src: url("fonts/AlegreyaSans-ExtraBold.ttf"); } 
+
+html, body { padding: 0; margin: 0; background: #111; color: #bbb; font: 1.15em AlegreyaSans-Regular; } 
+ul { margin: 0; padding: 0; padding-left2: 25px; } 
+table { border-collapse: collapse; border-spacing: 0; } 
+td { border-width: 0; padding: 0; } 
+.fr { float: right; } 
+.cl { clear: both; } 
+.pa { position: absolute; } 
+.pf { position: fixed; } 
+h3 { margin: 2px; } 
+li { padding-left: .85em; background: url(images/Bullet.png) 0 .3em no-repeat no-repeat; background-size: 10px auto; list-style: none; color: #cbcbcb; } 
+.nowr { white-space: nowrap; } 
+/* .strike { text-decoration: line-through; } */
+.strike { position: relative; } 
+.strike::before { display: "block"; content: " "; border-bottom: .075em solid currentcolor; position: absolute; left: 0; right: 0; top: 50%; margin-top: -.075em; } 
+
+.format-root .italic { color: #a0a0a0; font-family: "AlegreyaSans-Italic"; } 
+.format-root .value { font-family: "AlegreyaSans-ExtraBold"; } 
+.format-root img { vertical-align: middle; height: 1em; } 
+
+.tooltip-root { display: none; background: #000; padding: 10px; pointer-events: none; z-index: 1; } 
+.trait-pom { position: absolute; right: 4px; top: 0; } 
+.trait-name { font: 150% AlegreyaSans-Light; color: #fff; text-transform: uppercase; display: inline-block; } 
+.trait-name > .lower { font-size: 75%; } 
+.trait-description { color: #a0a0a0; } 
+.tooltip-right { margin: 10px 0 0 0; } 
+.tooltip-subcontent { padding-top: 2px; } 
+.tooltip-subcontent img { margin-right: .15em; } 
+.tooltip-header { color: #fff; font-size: 120%; } 
+
+.select-table { top: 0; background: #111; } 
+.select-cont { opacity: 0.4; border-radius: 8px; width: 90px; height: 90px; display: flex; } 
+.select-cont:hover ,
+.select-cont.active { opacity: 1; } 
+.select-cont.active { background: #222; box-shadow: 0 0 10px 4px #000; } 
+.select-cont img { max-width: 90px; max-height: 90px; margin: auto; justify-content: center; } 
+
+.weapon-table { left: 480px; } /* 90*5 + 30 */
+.weapon-stats { left: 750px; top: 180px; } /* weapon-table.left + 90*3 */
+.weapon-stats > table { width: 1170px; } /* 1920 - weapon-stats.left */
+.weapon-stats td { padding: 2px 4px; border: 1px solid #888; } 
+.weapon-stats tr > td:nth-child(1),
+.weapon-stats tr > td:nth-child(3) { white-space2: nowrap; } 
+.weapon-stats tr > td:nth-child(1) { width: 130px; } 
+.weapon-stats tr > td:nth-child(2) { width: 400px; } 
+.weapon-stats tr > td:nth-child(3) { width: 240px; } 
+
+.trait-list { margin: 180px 0 0 0; } 
+.trait-list svg { display: block; } 
+/* .trait-list:after { display: block; content: ""; font-size: 0; clear: both; } */
+.trait-list > g { float: left; width: 50px; } 
+.trait-list > g:nth-child(2n) { margin-top: 50px; } 
+.trait-image { opacity: 0.75; } 
+.trait-image:hover { opacity: 1; } 
+.trait-list > g.highlight image ,
+.trait-list > g.highlight-forbid image { opacity: .3; } 
+.trait-list > g.highlight path { stroke: green!important; } 
+.trait-list > g.highlight-forbid path { stroke: red!important; } 
+
+.rarity-0 { color: #fff; } 
+.rarity-1 { /*color: #3273cd; */ color: #008aff; } 
+.rarity-2 { /*color: #9637be; */ color: #9d12ff; } 
+.rarity-3 { /*color: #dc3c37; */ color: #f86059; } 
+.rarity-4 { /*color: #dc3c37; */ color: #ff9000; } 
+.rarity-5 { /*color: #dc3c37; */ color: #d2ff61; } 
+
+.select-table,
+.trait-list { -webkit-touch-callout: none; /* iOS Safari */
+ -webkit-user-select: none; /* Safari */
+ -khtml-user-select: none; /* Konqueror HTML */
+ -moz-user-select: none; /* Old versions of Firefox */
+ -ms-user-select: none; /* Internet Explorer/Edge */
+ user-select: none; /* Non-prefixed version, currently
+supported by Chrome, Edge, Opera and Firefox */ } 
