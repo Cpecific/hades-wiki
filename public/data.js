@@ -3597,7 +3597,7 @@ const Traits = {
 				Format: "PercentOfBase",
 				TraitName: "AresRushTrait",
 				BaseType: "Projectile",
-				BaseName: "AresProjectile",
+				BaseName: "AresRushProjectile",
 				BaseProperty: "DamageRadius",
 			}, {
 				ExtractAs: "TooltipAoE_AresShoutTrait",
