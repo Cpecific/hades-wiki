@@ -3564,7 +3564,6 @@ const Traits = {
 	},
 	AresAoETrait: {
 		DisplayName: `Black Metal`,
-		// Bonus Area of Effect:
 		Description: q => `Your {Blade Rift} effects deal damage in a wider area.
 {Bullet}Bonus Area of Effect: [${q.TooltipAoE}]
 {Bullet}{Cast} Area of Effect: [${q.DisplayDelta2}]

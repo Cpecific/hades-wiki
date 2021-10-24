@@ -1282,14 +1282,28 @@ const format_trait = (key, trait) => {
 	return str;
 };
 let CurTooltip = null;
+const getScrollbar = () => {
+	let root = (document.compatMode == 'BackCompat' ? document.body : document.documentElement);
+	// console.log({
+	// 	scrollHeight: root.scrollHeight,
+	// 	clientHeight: root.clientHeight,
+	// 	scrollWidth: root.scrollWidth,
+	// 	clientWidth: root.clientWidth,
+	// });
+	return {
+		isVertical: (root.scrollHeight > root.clientHeight),
+		isHorizontal: (root.scrollWidth > root.clientWidth),
+	};
+};
 const ShowTooltip = (el, opts) => {
 	CurTooltip = [el, opts];
 	let { traitKey } = opts;
 
 	tooltipEl.S().h('');
+	const { isHorizontal } = getScrollbar();
 	const { left, top, width, height } = el.getBoundingClientRect();
-	tooltipEl.style.left = (left + width) + 'px';
-	tooltipEl.style.top = top + 'px';
+	tooltipEl.style.left = (window.scrollX + left + width) + 'px';
+	tooltipEl.style.top = (window.scrollY + top) + 'px';
 	const trait = Traits[traitKey];
 	tooltipEl.A(E('div', { class: 'trait-pom' + (trait.Pom ? '' : ' strike') }, 'Lv. ' + FakeStackNum));
 	let rarityClass;
@@ -1394,9 +1408,15 @@ const ShowTooltip = (el, opts) => {
 	}
 	tooltipEl.A(E('div', { class: 'cl' }));
 	const box = tooltipEl.getBoundingClientRect();
-	const innerHeight = window.innerHeight - 5;
+	let innerHeight = window.innerHeight - 2;
+	if (isHorizontal) { innerHeight -= 18; } // 14 for chrome windows
+	// console.log({
+	// 	top: tooltipEl.style.top,
+	// 	innerHeight: window.innerHeight,
+	// 	box,
+	// })
 	if (box.top + box.height > innerHeight) {
-		tooltipEl.style.top = (innerHeight - box.height) + 'px';
+		tooltipEl.style.top = (window.scrollY + innerHeight - box.height) + 'px';
 	}
 	for (const { el } of curTraitList) {
 		el.CR('highlight');
@@ -1422,8 +1442,8 @@ This page is supposed to be viewed at {100%} zoom.<br/>Use {Ctrl}+{MiddleMouseBt
 </div>`));
 	const box = tooltipEl.getBoundingClientRect();
 	const { left, top, width, height } = el.getBoundingClientRect();
-	tooltipEl.style.left = (left - box.width) + 'px';
-	tooltipEl.style.top = top + 'px';
+	tooltipEl.style.left = (window.scrollX + left - box.width) + 'px';
+	tooltipEl.style.top = (window.scrollY + top) + 'px';
 };
 const HideTooltip = () => {
 	tooltipEl.H();
@@ -1805,7 +1825,7 @@ const init_dom = () => {
 		const outSrc = `${R}/images/PactBiomeRewardUnknown.png`;
 		const inSrc = `${R}/images/UnknownSuperReward_Shiny.png`;
 		let el = E('img', {
-			class: 'pa',
+			class: 'pf',
 			src: outSrc,
 			style: `top: 0; right: 0; width: 40px; border-radius: 50%;`,
 		}).on('mouseenter', function (e) {
@@ -1819,7 +1839,7 @@ const init_dom = () => {
 	})();
 	let table, tbody;
 	// GODS
-	table = E('table', { class: 'pf select-table god-table' }).A(tbody = E('tbody'));
+	table = E('table', { class: 'pa select-table god-table' }).A(tbody = E('tbody'));
 	for (const list of GodTable) {
 		let tr = E('tr');
 		for (const key of list) {
@@ -1840,7 +1860,7 @@ const init_dom = () => {
 	}
 	root.A(table);
 	// WEAPONS
-	table = E('table', { class: 'pf select-table weapon-table' }).A(tbody = E('tbody'));
+	table = E('table', { class: 'pa select-table weapon-table' }).A(tbody = E('tbody'));
 	for (const list of WeaponTable) {
 		let tr = E('tr');
 		for (const key of list) {
