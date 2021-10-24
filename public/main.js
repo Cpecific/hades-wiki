@@ -832,6 +832,12 @@ const GetBaseDataValue = (() => {
 		DemeterChillKill: {
 			DamageRadius: 240,
 		},
+		DemeterSuper: {
+			DamageRadius: 750,
+		},
+		DemeterMaxSuper: {
+			DamageRadius: 1500,
+		},
 		// * Dionysus
 		DionysusLobProjectile: {
 			DamageRadius: 400,

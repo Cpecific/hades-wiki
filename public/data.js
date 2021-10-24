@@ -2057,7 +2057,8 @@ const Traits = {
 	ShieldLoadAmmo_DemeterRangedTrait: {
 		DisplayName: `Icy Flare`,
 		Description: q => `Your {Cast} damages foes around you and inflicts {Chill}.
-{Bullet}Blast Damage: [${q.DisplayDelta1}]`,
+{Bullet}Blast Damage: [${q.DisplayDelta1}]
+{Bullet}Damage Radius: [${q.TooltipDamageRadius}]`,
 		...make_RarityLevels(1.0, 1.140, 1.285, 1.430),
 		Effects: [{
 			BaseValue: 70,
@@ -2067,6 +2068,11 @@ const Traits = {
 			},
 			ExtractValue: {
 				ExtractAs: "TooltipDamage",
+			},
+		}, {
+			ChangeValue: 500,
+			ExtractValue: {
+				ExtractAs: "TooltipDamageRadius",
 			},
 		}],
 		Inflicts: {
@@ -2116,15 +2122,32 @@ const Traits = {
 		DisplayName: `Demeter's Aid`,
 		Description: q => `Your {Call} creates a winter vortex that grows over {${q.TooltipSuperDuration} Sec.}, inflicting {Chill}.
 {Bullet}Vortex Damage: [${q.DisplayDelta1}] (every ${q.TooltipInterval} Sec.)
-{Bullet}Max Gauge Bonus: [${q.TooltipDuration} Sec. Duration]`,
+{Bullet}Max Gauge Bonus: [${q.TooltipDuration} Sec. Duration]
+{Bullet}Damage Radius: [${q.TooltipDamageRadius}]; Max: [${q.TooltipDamageRadiusMax}]`,
 		...rarity_10,
+		// Projectile.DemeterSuper
+		// Projectile.DemeterMaxSuper
 		Effects: [{
 			BaseValue: 10,
 			MinMultiplier: 0.2,
 			...pom.DuplicateMultiplier,
-			ExtractValue: {
+			ExtractValue: [{
 				ExtractAs: "TooltipDamage",
-			},
+			}, {
+				ExtractAs: "TooltipDamageRadius",
+				External: true,
+				TraitName: "DemeterShoutTrait",
+				BaseType: "ProjectileBase",
+				BaseName: "DemeterSuper",
+				BaseProperty: "DamageRadius",
+			}, {
+				ExtractAs: "TooltipDamageRadiusMax",
+				External: true,
+				TraitName: "DemeterShoutTrait",
+				BaseType: "ProjectileBase",
+				BaseName: "DemeterMaxSuper",
+				BaseProperty: "DamageRadius",
+			}],
 		}, {
 			ChangeValue: 0.25,
 			ExtractValue: {
