@@ -1820,23 +1820,6 @@ const init_dom = () => {
 			ShowTooltip(...CurTooltip);
 		}
 	});
-	(() => {
-		// src: `${R}/images/UnknownButton.png`,
-		const outSrc = `${R}/images/PactBiomeRewardUnknown.png`;
-		const inSrc = `${R}/images/UnknownSuperReward_Shiny.png`;
-		let el = E('img', {
-			class: 'pf',
-			src: outSrc,
-			style: `top: 0; right: 0; width: 40px; border-radius: 50%;`,
-		}).on('mouseenter', function (e) {
-			this.sa('src', inSrc);
-			ShowTooltipHelp(this);
-		}).on('mouseleave', function (e) {
-			this.sa('src', outSrc);
-			HideTooltip();
-		});
-		document.body.A(el);
-	})();
 	let table, tbody;
 	// GODS
 	table = E('table', { class: 'pa select-table god-table' }).A(tbody = E('tbody'));
@@ -1886,6 +1869,23 @@ const init_dom = () => {
 		tbody.A(tr);
 	}
 	root.A(table);
+	(() => {
+		// src: `${R}/images/UnknownButton.png`,
+		const outSrc = `${R}/images/PactBiomeRewardUnknown.png`;
+		const inSrc = `${R}/images/UnknownSuperReward_Shiny.png`;
+		let el = E('img', {
+			class: 'pf',
+			src: outSrc,
+			style: `top: 0; right: 0; width: 40px; border-radius: 50%;`,
+		}).on('mouseenter', function (e) {
+			this.sa('src', inSrc);
+			ShowTooltipHelp(this);
+		}).on('mouseleave', function (e) {
+			this.sa('src', outSrc);
+			HideTooltip();
+		});
+		document.body.A(el);
+	})();
 };
 const main = async () => {
 	const Data = await import('./data.js');
