@@ -867,7 +867,8 @@ const GetBaseDataValue = (() => {
 		},
 		ZeusShieldLoadAmmoStrike: {
 			DamageRadius: 200, // derive_from: LightningStrikeX
-			Range: 0, // derive_from: LightningStrikeX
+			// Range: 0, // derive_from: LightningStrikeX
+			Range: 350, // Powers.lua::ShieldFireClear
 		},
 		LightningDash: {
 			DamageRadius: 200,
